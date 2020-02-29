@@ -1,0 +1,253 @@
+SELECT EMPLOYEE_ID FROM employees
+WHERE YEAR(HIRE_DATE)=YEAR(SYSDATE());
+
+SELECT EMPLOYEE_ID, DATEDIFF(END_DATE,START_DATE) from job_history;
+
+
+SELECT EMPLOYEE_ID, ROUND((DATEDIFF(END_DATE,START_DATE)/365)) "EXP(YRS)" from job_history;
+
+SELECT DEPARTMENT_ID, YEAR(HIRE_DATE), COUNT(EMPLOYEE_ID) FROM employees
+GROUP BY DEPARTMENT_ID,YEAR(HIRE_DATE);
+
+DATE_ADD(date, INTERVAL value addunit)
+date 	Required. The date to be modified
+value 	Required. The value of the time/date interval to add. Both positive and negative values are allowed
+addunit 	Required. The type of interval to add. Can be one of the following values: 
+MICROSECOND
+SECOND
+MINUTE
+HOUR
+DAY
+WEEK
+MONTH
+QUARTER
+YEAR
+
+DROP DATABASE testDB;
+
+DROP TABLE persons;
+
+TRUNCATE TABLE persons; used to delete all data from table.
+
+ALTER TABLE persons
+ADD Birthday DATE;	Add a column of type DATE called Birthday.
+
+#Delete the column Birthday from the Persons table.
+ALTER TABLE persons
+DROP COLUMN Birthday;
+
+#Select all the different values from the Country column in the Customers table.
+
+SELECT DISTINCT Country FROM Customers;
+
+#Use the NOT keyword to select all records where City is NOT "Berlin".
+SELECT * FROM Customers
+WHERE NOT City="Berlin";
+
+#Select all records from the Customers where the PostalCode column is empty.
+SELECT * FROM Customers
+WHERE PostalCode IS NULL;
+
+#Select all records from the Customers where the PostalCode column is NOT empty.
+SELECT * FROM Customers
+WHERE PostalCode IS NOT NULL;
+
+#Update the City column of all records in the Customers table.
+UPDATE Customers
+SET City="Oslo";
+
+#Update the City value and the Country value.
+UPDATE Customers
+SET City="Oslo",Country="Norway"
+WHERE CustomerID=32;
+
+#Select all records where the value of the City column starts with the letter "a".
+SELECT * FROM Customers
+WHERE City LIKE "a%";
+
+#Select all records where the value of the City column ends with the letter "a".
+SELECT * FROM Customers
+WHERE City LIKE "%a";
+
+#Select all records where the value of the City column contains the letter "a".
+
+SELECT * FROM Customers
+WHERE City LIKE "%a%";
+
+#Select all records where the value of the City column starts with letter "a" and ends with the letter "b".
+
+SELECT * FROM Customers
+WHERE City LIKE "a%b";
+
+#Select all records where the value of the City column does NOT start with the letter "a".
+
+SELECT * FROM Customers
+WHERE City NOT LIKE "a%";
+
+#Select all records where the first letter of the City is an "a" or a "c" or an "s".
+
+SELECT * FROM Customers
+WHERE City LIKE "[acs]%";
+
+#Select all records where the first letter of the City starts with anything from an "a" to an "f".
+
+SELECT * FROM Customers
+WHERE City LIKE "[a-f]%";
+
+#Select all records where the first letter of the City is NOT an "a" or a "c" or an "f".
+SELECT * FROM Customers
+WHERE City LIKE "[^acf]%";
+
+#Use the IN operator to select all the records where Country is either "Norway" or "France".
+SELECT * FROM Customers
+WHERE Country IN ('Norway','France');
+
+#Use the IN operator to select all the records where Country is NOT "Norway" and NOT "France".
+SELECT * FROM Customers
+WHERE Country NOT IN ('Norway','France');
+
+#Use the BETWEEN operator to select all the records where the value of the ProductName column is alphabetically between 'Geitost' and 'Pavlova'.
+
+
+SELECT * FROM Products
+WHERE ProductName BETWEEN 'Geitost' and 'Pavlova';
+
+#The following SQL statement will select all customers, and any orders they might have:
+SELECT Customers.CustomerName, Orders.OrderID
+FROM Customers
+LEFT JOIN Orders ON Customers.CustomerID = Orders.CustomerID
+ORDER BY Customers.CustomerName;
+
+#The following SQL statement lists all customers and suppliers:
+SELECT 'Customer' As Type, ContactName, City, Country
+FROM Customers
+UNION
+SELECT 'Supplier', ContactName, City, Country
+FROM Suppliers;
+
+#w3schools sql tutorials
+
+SELECT FIRST_NAME, DATE_ADD(HIRE_DATE, INTERVAL 1 MONTH) AS "FIRST SALARY" FROM employees;
+
+SELECT 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

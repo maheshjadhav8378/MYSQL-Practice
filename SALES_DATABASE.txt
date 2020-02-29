@@ -1,0 +1,196 @@
+SELECT onum FROM ORDERS
+WHERE odate= '1990-10-03' OR odate= '1990-10-04'
+ORDER BY onum DESC;
+
+SELECT onum FROM ORDERS
+WHERE DAY(odate)= '03' OR DAY(odate)= '04'
+ORDER BY onum DESC;
+
+SELECT cname FROM CUSTOMERS c 
+INNER JOIN SALESPEOPLE s
+ON c.snum=s.snum
+WHERE s.sname='Peel' OR s.sname='Motika';
+
+SELECT cname FROM CUSTOMERS
+WHERE cname BETWEEN 'A' AND 'G';
+
+SELECT cname FROM CUSTOMERS
+WHERE cname LIKE 'C%';
+
+SELECT onum FROM ORDERS
+WHERE amt>0 AND amt IS NOT NULL;
+
+SELECT COUNT(onum) FROM ORDERS
+WHERE MONTH(odate)=10 AND DAY(odate)=03;
+
+SELECT COUNT(city) FROM CUSTOMERS
+WHERE City IS NOT NULL;
+
+
+SELECT c.cnum,MIN(o.amt) FROM ORDERS o 
+INNER JOIN CUSTOMERS c
+ON o.cnum=c.cnum 
+GROUP BY c.cnum;
+
+SELECT cname FROM CUSTOMERS
+WHERE cname LIKE 'G%'
+ORDER BY cname ASC
+LIMIT 0,1;
+
+
+SELECT cname FROM CUSTOMERS
+WHERE cname LIKE 'G%'
+ORDER BY cname ASC
+LIMIT 1;
+
+SELECT City,MAX(rating) FROM CUSTOMERS
+GROUP BY City;
+
+SELECT o.odate,COUNT( DISTINCT s.snum) FROM ORDERS o
+INNER JOIN SALESPEOPLE s
+ON o.snum=s.snum
+GROUP BY o.odate;
+
+SELECT o.onum,s.snum,o.amt*s.comm AS "COMM" 
+FROM ORDERS o 
+INNER JOIN SALESPEOPLE s
+ON s.snum=o.snum;
+
+SELECT CONCAT("for the city",' ', city), concat("the highest rating :",' ', convert(MAX(rating),VARCHAR(20)) ) FROM CUSTOMERS
+GROUP BY city;
+
+SELECT CONCAT("for the city",' ', city,' ',"highest rating:",max(rating)) 
+FROM CUSTOMERS 
+GROUP BY city;
+
+SELECT rating, cname,cnum FROM CUSTOMERS
+ORDER BY rating DESC;
+
+SELECT count(onum), odate FROM ORDERS
+GROUP BY odate
+ORDER BY COUNT(onum) DESC;
+
+SELECT o.onum from ORDERS o
+WHERE o.cnum=(SELECT cnum FROM CUSTOMERS WHERE cname = 'Cisneros');
+
+SELECT c.cname,c.rating FROM CUSTOMERS c INNER JOIN ORDERS o
+ON o.cnum=c.cnum
+WHERE o.amt > (SELECT AVG(amt) FROM ORDERS)
+GROUP BY c.cname,c.rating;
+
+SELECT c.cname,c.rating FROM CUSTOMERS c INNER JOIN ORDERS o
+ON o.cnum=c.cnum
+GROUP BY c.cname,c.rating
+HAVING o.amt > AVG(o.amt); NOT OK
+
+
+SELECT s.sname,SUM(o.amt) FROM ORDERS o
+INNER JOIN SALESPEOPLE s
+ON o.snum=s.snum
+GROUP BY s.sname
+having sum(o.amt)>(SELECT MAX(amt) from ORDERS);
+
+
+
+pratikgd111@gmail.com
+
+
+
+SELECT s.sname,SUM(o.amt) FROM ORDERS o
+INNER JOIN SALESPEOPLE s
+ON o.snum=s.snum
+GROUP BY s.sname
+having sum(o.amt)>MAX(amt);
+
+select MAX(amt) from ORDERS;
+
+SELECT s.sname FROM SALESPEOPLE s
+INNER JOIN CUSTOMERS c
+ON c.snum=s.snum
+WHERE s.city != ALL(SELECT city from CUSTOMERS);
+
+SELECT c.cname from CUSTOMERS c
+WHERE rating >= ANY(SELECT c.rating From CUSTOMERS c INNER JOIN SALESPEOPLE s
+ON c.snum=s.snum
+WHERE sname='Serres');
+
+SELECT o.onum from ORDERS o
+where o.amt > ANY (SELECT o.amt from ORDERS o INNER JOIN CUSTOMERS c
+ON o.cnum=c.cnum
+where c.city = 'London');
+
+
+SELECT o.onum from ORDERS o
+where o.amt > (SELECT MIN(o.amt) from ORDERS o INNER JOIN CUSTOMERS c
+ON o.cnum=c.cnum
+where c.city = 'London');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

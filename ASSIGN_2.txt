@@ -1,0 +1,147 @@
+
+SELECT * FROM employees
+LIMIT 10;
+
+SELECT o.onum, c.cname 
+FROM CUSTOMERS c INNER JOIN ORDERS o 
+ON o.cnum=c.cnum;
+
+SELECT s.sname,s.snum, c.cname,o.snum,o.onum
+FROM SALESPEOPLE s INNER JOIN ORDERS o
+ON s.snum=o.snum
+INNER JOIN CUSTOMERS c
+ON c.cnum=o.cnum;
+
+SELECT c.cname,s.sname,s.comm
+FROM SALESPEOPLE s INNER JOIN CUSTOMERS c
+ON c.snum=s.snum
+WHERE s.comm> 0.12;
+
+SELECT o.amt*s.comm, s.sname,o.onum, c.cnum,c.cname
+FROM SALESPEOPLE s INNER JOIN ORDERS o 
+ON s.snum=o.snum
+INNER JOIN CUSTOMERS c
+ON o.cnum=c.cnum
+WHERE c.rating>100;
+
+SELECT s1.sname, s2.sname 
+FROM SALESPEOPLE s1 INNER JOIN SALESPEOPLE s2
+ON s1.city=s2.city
+
+SELECT s.sname, c.cname FROM CUSTOMERS c CROSS JOIN SALESPEOPLE s;
+
+SELECT c.cname,c.city,s.snum, s.sname,s.city,s.comm
+FROM CUSTOMERS c INNER JOIN SALESPEOPLE s
+ON s.snum=c.snum
+WHERE s.comm>0.12; 
+
+SELECT c.cname, c.snum,s.sname,s.snum
+FROM CUSTOMERS c LEFT OUTER JOIN SALESPEOPLE s
+ON c.snum=s.snum
+union 
+SELECT c.cname, c.snum,s.sname,s.snum
+FROM CUSTOMERS c right OUTER JOIN SALESPEOPLE s
+ON c.snum=s.snum;
+
+SELECT s1.sname,s2.sname 
+FROM SALESPEOPLE s1 INNER JOIN SALESPEOPLE s2
+ON s1.city=s2.city
+WHERE s1.sname!=s2.sname AND s1.sname >s2.sname;
+
+SELECT o.amt*s.comm, o.onum, c.cnum, c.cname
+FROM ORDERS o INNER JOIN CUSTOMERS c
+ON c.cnum=o.cnum
+INNER JOIN SALESPEOPLE s 
+ON c.snum=s.snum
+WHERE c.rating>100;
+
+SELECT s1.sname, s2.sname 
+FROM SALESPEOPLE s1 INNER JOIN SALESPEOPLE s2
+ON s1.city=s2.city
+WHERE s1.sname>s2.sname;
+
+SELECT c1.cname,c2.cname,c1.city
+FROM CUSTOMERS c1 INNER JOIN CUSTOMERS c2
+ON c1.rating=c2.rating
+WHERE c2.cname='Hoffman'AND c1.cname !='Hoffman';
+
+SELECT EMPLOYEE_ID FROM job_history
+GROUP BY EMPLOYEE_ID
+HAVING COUNT(JOB_ID)>1;
+
+SELECT JOB_ID FROM job_history
+WHERE DATEDIFF(END_DATE,START_DATE)>10000
+GROUP BY JOB_ID
+HAVING COUNT(EMPLOYEE_ID)>1;
+
+SELECT DEPARTMENT_ID, YEAR(HIRE_DATE), COUNT(EMPLOYEE_ID)
+FROM employees
+GROUP BY DEPARTMENT_ID, YEAR(HIRE_DATE);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
